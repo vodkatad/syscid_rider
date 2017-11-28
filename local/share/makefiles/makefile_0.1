@@ -1,2 +1,18 @@
-REGIONS=$(PRJ_ROOT)/local/share/data/wantedsnps_loci_ld_0.8
+REGIONS=$(PRJ_ROOT)/local/share/data/mergedwantedsnps_loci_ld_0.8
 CHR=1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 X Y
+CHRC=$(addprefix chr, $(CHR))
+
+SPECIES:=hsapiens
+## I dati sono tutti basati su Ensembl 67
+VERSION:=67
+MAIN_BIOINFO_ROOT=/rogue/bioinfotree
+SEQ_DIR=$(MAIN_BIOINFO_ROOT)/task/sequences/dataset/ensembl/$(SPECIES)/$(VERSION)/
+CHR_LEN_FILE = /rogue/bioinfotree/task/sequences/dataset/ensembl/$(SPECIES)/$(VERSION)/all_chr.len
+
+BACKGROUND = /rogue/molineri/bioinfotree/task/binding_sites/local/share/data/hg19.background_altern_format.txt
+
+VCF_ROOT=/mnt/red/data/bioinfotree/prj/tba_variation
+VCF_FOLDER=$(VCF_ROOT)/dataset/0.3/vcf
+
+#data@tungsteno:/mnt/red/data/bioinfotree/prj/syscid/local/share/data$ repeat_fasta_pipe -n 'tr -s " " "\t" | tr -d '[' | tr -d ']' | transpose | sed 1,2d | bawk -v f=$HEADER "{print f,NR,\$1,\$2,\$3,\$4}"' < 20170320_pwms_selected.jaspar | sed 's/\t0/\t1/g' | tr " " "." > 20170320_pwms_selected.matrixrider
+PWM=$(PRJ_ROOT)/local/share/data/20170320_pwms_selected.matrixrider
